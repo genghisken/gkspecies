@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load markup %}
+
+{% load pagination_tags %}
+
+{% block title %}VAMDC Species List{% endblock %}
+
+{% block content %}
+
+<CENTER>
+<TABLE>
+<TR>
+<TD><img src="../../site_media/images/vamdc_logo.png" height=80 align="middle" />
+<TD><FONT size='6'><B>Species List</B></FONT>
+</TR>
+</TABLE>
+</CENTER>
+
+<center>
+<FONT color="#000000" size='6'>({{table.rows.count}})</FONT>
+</center>
+<BR><BR>
+
+<CENTER>
+<table border="1" cellpadding="2" bgcolor="white">
+
+{% autopaginate rows 50 %}
+
+<tr>
+  {% for column in table.columns %}
+  <th><font  size='2'>
+    {% if column.sortable %}
+      <a href="?sort={{ column.name_toggled }}">
+        {{ column }}
+      </a>
+      {% if column.is_ordered_reverse %}
+        <!-- <img src="/ps1/site_media/images/up.jpg" /> -->
+      {% else %}
+        <!-- <img src="/ps1/site_media/images/down.jpg" /> -->
+      {% endif %}
+    {% else %}
+      {{ column }}
+    {% endif %}
+  </th>
+  {% endfor %}
+</tr>
+
+{% for row in rows %}
+  <tr>
+  <td><font  size='2'><a href="../species/{{row.data.id}}/">{{ row.data.id }}</a></td>
+  <td><font  size='2'>{{ row.data.mass|default_if_none:"" }}</td>
+  <td><font  size='2'>{{ row.data.name|restructuredtext|default_if_none:"" }}</td>
+  <td><font  size='2'>{{ row.data.structural_formula|restructuredtext|default_if_none:"" }}</td>
+  <td><font  size='2'>{{ row.data.stoichiometric_formula|restructuredtext|default_if_none:"" }}</td>
+  </tr>
+{% endfor %}
+{% paginate %} 
+
+</table>
+
+</CENTER>
+{% endblock %}

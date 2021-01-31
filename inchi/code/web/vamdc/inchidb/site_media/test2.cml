@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<molecule xmlns="http://www.xml-cml.org/schema" id="CH4-2">
+<atomArray>
+  <atom id="C1" elementType="C" isotopeNumber="13"/>
+  <atom id="H1" elementType="H"/>
+  <atom id="H2" elementType="H"/>
+  <atom id="H3" elementType="H"/>
+  <atom id="H4" elementType="H"/>
+</atomArray>
+<bondArray>
+  <bond atomRefs2="C1 H1" id="C1_H1" order="S"/>
+  <bond atomRefs2="C1 H2" id="C1_H2" order="S"/>
+  <bond atomRefs2="C1 H3" id="C1_H3" order="S"/>
+  <bond atomRefs2="C1 H4" id="C1_H4" order="S"/>
+</bondArray>
+</molecule>

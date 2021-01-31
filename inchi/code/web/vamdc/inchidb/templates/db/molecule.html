@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% load markup %}
+
+{% block title %}VAMDC Species{% endblock %}
+
+{% block content %}
+
+<BODY bgcolor="white">
+
+<CENTER>
+<TABLE>
+<TR>
+<TD><img src="../../../site_media/images/vamdc_logo.png" height=80 align="middle" />
+<TD><FONT size='6'><B>Species</B></FONT>
+</TR>
+</TABLE>
+</CENTER>
+
+<br><br>
+
+<CENTER>
+
+<table>
+<tr><td><B>VAMDC Species ID:</B></td><td><B>{{ species.id }}</B></td></tr>
+<tr><td>InChIKey:</td><td>{{ species.inchikey }}</td></tr>
+<tr><td>InChI:</td><td>{{ species.inchi }}</td></tr>
+<tr><td>Charge:</td><td>{{ species.charge }}</td></tr>
+<tr><td>Mass:</td><td>{{ species.mass_number }}</td></tr>
+<tr><td>Type:</td><td>{{ species.species_type.name }}</td></tr>
+<tr><td>Stoichiometric Formula:</td><td>{{ species.stoichiometric_formula }}</td></tr>
+
+{% if species.smiles %}
+<tr><td>SMILES:</td><td>{{ species.smiles }}</td></tr>
+{% endif %}
+</table>
+
+{% if aliases %}
+<BR><BR>
+<P>Species Names</P>
+<table>
+{% for row in aliases %}
+  <tr>
+    {% if row.markup_type.id == 2 %}
+    <!-- <td>{{ row.name|restructuredtext }}</td> -->
+    <td>{{ row.name|safe }}</td>
+    {% endif %}
+  </tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% if species_formulae %}
+<BR><BR>
+<P>Species Structural Formulae</P>
+<table>
+{% for row in species_formulae %}
+  <tr>
+    {% if row.markup_type.id == 2 %}
+    <td>{{ row.formula|safe }}</td>
+    {% endif %}
+  </tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% if db_aliases %}
+<BR><BR>
+<P>Species Identifiers in Other Databases</P>
+<table>
+{% for row in db_aliases %}
+  <tr>
+    <td>{% ifchanged row.member_database.short_name %} {{ row.member_database.short_name }}: {% endifchanged %}</td>
+    <td>{{ row.database_species_id }}</td>
+  </tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% if species_resources %}
+<BR><BR>
+<P>External species resources</P>
+<table>
+{% for row in species_resources %}
+  <tr>
+    <td>{{ row.url }}</td>
+    <td>{{ row.description }}</td>
+  </tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% if related %}
+<BR><BR>
+<P>Other Molecules with this InChIKey</P>
+<table>
+{% for row in related %}
+  <tr><td><a href="../../species/{{row.id}}/">{{ row.id }}</a></td></tr>
+{% endfor %}
+</table>
+<BR><BR>
+{% endif %}
+
+<BR><BR>
+<P>Use a pipe symbol (|) between multiple names and formulae</P>
+
+{% if form %}
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+    <FONT color="#FFFFFF">
+    <TABLE class="forms">
+        {{ form.as_table }}
+    </TABLE>
+    <input type="submit" value="Add Aliases" />
+    </FONT>
+    </form>
+{% endif %}
+
+<p><a href="../../duplicates/{{species.inchikey}}/">Add Duplicate InChIKey</a></p>
+
+</CENTER>
+
+{% endblock %}

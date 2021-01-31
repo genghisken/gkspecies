@@ -1,0 +1,64 @@
+<html>
+<head>
+<STYLE>
+a:link {text-decoration: none; color: #3399FF;}
+a:visited {text-decoration: none; color: red;}
+a:active {text-decoration: none; color: #3399FF;}
+a:hover {text-decoration: none; color: red;}
+
+input.submit  {border:0; color:#3399FF; font-family:helvetica; font-weight:bold;}
+input.submit:hover  {border:0; color:red; font-family:helvetica; font-weight:bold;}
+
+a:link img {border:0 none;}
+a:hover hover img {position:relative; right:0px; top:0px; border:0; width:70px; margin:0 0 0 -70px}
+a:hover hover2 img {position:relative; left:0px; top:0px; border:0; height:25px; margin:0 0 0 -187px}
+a:hover hover3 img {position:relative; left:0px; top:0px; border:0; height:25px; margin:0 0 0 -125px}
+a:hover hover4 img {position:relative; left:0px; top:0px; border:0; height:25px; margin:0 0 0 -62px}
+a:visited img {border:0 none;}
+
+body
+{
+font-size : 14px;
+font-family : Verdana,Helvetica,Arial,sans-serif;
+}
+
+
+table
+{ 
+border: 0px #000000 solid;
+border-collapse: collapse;
+border-spacing: 4px; 
+font-size : 10px;
+font-family : Verdana,Helvetica,Arial,sans-serif;
+}
+
+td { padding: 2px; }
+th { padding: 2px; }
+
+table.forms th, table.forms td
+{
+border: 0px #FFFFFF solid;
+border-collapse: collapse;
+border-spacing: 5px;
+font-size : 14px;
+font-family : Verdana,Helvetica,Arial,sans-serif;
+color : #000000; 
+}
+
+
+
+ul {list-style-type:none;}
+img{display:block;}
+</STYLE>
+
+<title>{% block title %}Main Base Title{% endblock %}</title>
+
+
+<script src="../../site_media/jmol/Jmol.js"></script>
+
+</head>
+{% block content %}
+Unset Content
+{% endblock %}
+</body>
+</html>

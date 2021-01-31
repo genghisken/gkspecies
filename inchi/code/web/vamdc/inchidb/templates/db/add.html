@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Add VAMDC Species{% endblock %}
+
+{% block content %}
+
+<BODY bgcolor="white">
+
+<br><br><br>
+
+<CENTER>
+<TABLE>
+<TR>
+<TD><img src="../../site_media/images/vamdc_logo.png" height=80 align="middle" />
+<TD><FONT size='6'><B>Add Species</B></FONT>
+</TR>
+</TABLE>
+</CENTER>
+
+<br><br><br>
+
+<CENTER>
+
+{% if inchi %}
+    <P>{{inchi}}</P>
+{% endif %}
+
+{% if inchikey %}
+    <P>{{inchikey}}</P>
+    <br><br><br>
+{% endif %}
+
+<!-- Jmol test code -->
+{% if jscml or jsmol %}
+
+    <script>
+      jmolInitialize("../../site_media/jmol", true);
+      jmolCheckBrowser("popup", "../../browsercheck", "onClick");
+    </script>
+    <table border="1">
+      <tr>
+        <td>
+          <h2>Jmol Interpretation from
+            {% if jscml %}
+            CML
+            {% else %}
+              {% if jsmol %}
+              MOL
+              {% else %}
+              SMILES
+              {% endif %}
+            {% endif %}
+          </h2>
+          <script>
+            jmolSetAppletColor("#FFFFFF");
+            {% if jscml %}
+              var cmlMolecule = {{jscml|safe}};
+              jmolAppletInline(300, cmlMolecule);
+            {% else %}
+              {% if jsmol %}
+                var molfile = {{jsmol|safe}};
+                jmolAppletInline(300, molfile, "","mol");
+              {% else %}
+                jmolApplet(300, "load '${{smiles|safe}}'");
+              {% endif %}
+            {% endif %}
+          </script>
+        </td>
+      </tr>
+    </table>
+
+{% endif %}
+
+<P>Use a pipe symbol (|) between multiple names and formulae</P>
+
+{% if form %}
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+    <FONT color="#FFFFFF">
+    <TABLE class="forms">
+        {{ form.as_table }}
+    </TABLE>
+    <input type="submit" value="Add" />
+    </FONT>
+    </form>
+{% endif %}
+
+</CENTER>
+
+{% endblock %}

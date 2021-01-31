@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Add Duplicate InChIKey{% endblock %}
+
+{% block content %}
+
+<BODY bgcolor="white">
+
+<br><br><br>
+
+<CENTER>
+<TABLE>
+<TR>
+<TD><img src="../../../site_media/images/vamdc_logo.png" height=80 align="middle" />
+<TD><FONT size='6'><B>Add Duplicate InChIKey</B></FONT>
+</TR>
+</TABLE>
+</CENTER>
+
+<br><br><br>
+
+<CENTER>
+
+{% if related %}
+
+<table>
+<tr><td>InChIKey:</td><td>{{ related.0.inchikey }}</td></tr>
+<tr><td>InChI:</td><td>{{ related.0.inchi }}</td></tr>
+<tr><td>Charge:</td><td>{{ related.0.charge }}</td></tr>
+<tr><td>Mass:</td><td>{{ related.0.mass_number }}</td></tr>
+<tr><td>Type:</td><td>{{ related.0.species_type.name }}</td></tr>
+</table>
+<BR><BR>
+
+<P>Existing Molecules with this InChIKey</P>
+
+<table>
+{% for row in related %}
+  <tr><td><a href="../../species/{{row.id}}/">{{ row.id }}</a></td></tr>
+{% endfor %}
+</table>
+<BR><BR>
+
+{% endif %}
+
+
+
+{% if form %}
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+    <FONT color="#FFFFFF">
+    <TABLE class="forms">
+        {{ form.as_table }}
+    </TABLE>
+    <input type="submit" value="Add" />
+    </FONT>
+    </form>
+{% endif %}
+
+{% if inchi %}
+    <P>{{inchi}}</P>
+{% endif %}
+
+{% if inchikey %}
+    <P>{{inchikey}}</P>
+{% endif %}
+
+</CENTER>
+
+{% endblock %}

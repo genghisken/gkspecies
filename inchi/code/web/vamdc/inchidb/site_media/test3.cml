@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<molecule xmlns="http://www.xml-cml.org/schema">
+  <crystal xmlns:cmldict="http://www.xml-cml.org/dict/cmlDict">
+   <scalar dictRef="cmldict:a">8.781</scalar>
+   <scalar dictRef="cmldict:b">8.845</scalar>
+   <scalar dictRef="cmldict:c">10.171</scalar>
+   <scalar dictRef="cmldict:alpha">90.00</scalar>
+   <scalar dictRef="cmldict:beta">101.34</scalar>
+   <scalar dictRef="cmldict:gamma">90.00</scalar>
+  </crystal>
+  <atomArray>
+    <atom id="Fe1" xFract="1.0" yFract="0.0" zFract="1.0" elementType="Fe"/>
+    <atom id="N1" xFract="0.7619" yFract="0.0548" zFract="0.9299" elementType="N"/>
+  </atomArray>
+</molecule>

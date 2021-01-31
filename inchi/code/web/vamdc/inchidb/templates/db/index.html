@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}MOL/CML/SMILES to InChIKey Generator{% endblock %}
+
+{% block content %}
+
+<BODY bgcolor="white">
+
+<br><br><br>
+
+<CENTER>
+<TABLE>
+<TR>
+<TD><img src="../site_media/images/vamdc_logo.png" height=80 align="middle" />
+<TD><FONT size='6'><B>MOL/CML/SMILES to InChIKey Generator</B></FONT>
+</TR>
+</TABLE>
+</CENTER>
+
+<br><br><br>
+
+<CENTER>
+
+{% if form %}
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+    <FONT color="#FFFFFF">
+    <TABLE class="forms">
+        {{ form.as_table }}
+    </TABLE>
+    <input type="submit" value="Submit" />
+    </FONT>
+    </form>
+    <P><STRONG>WARNING: </STRONG>Choosing to reconnect metal results in a non-standard InChI</P>
+{% endif %}
+
+{% if inchi %}
+    <P>{{inchi}}</P>
+{% endif %}
+
+{% if inchikey %}
+    <P>{{inchikey}}</P>
+{% endif %}
+
+</CENTER>
+
+{% endblock %}

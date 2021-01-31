@@ -1,0 +1,29 @@
+import os
+import sys
+
+# EDIT THE FOLLOWING TWO LINES
+sys.path.append('/files/django_websites/svnrelease/vamdc/inchi/code/web/vamdc/')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'inchidb.settings'
+sys.path.append('/files/django_websites/svnrelease/vamdc/inchi/code/web/vamdc/inchidb')
+
+
+import django.core.handlers.wsgi
+application = django.core.handlers.wsgi.WSGIHandler()
+
+
+
+
+
+
+
+
+
+#import os
+#
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "inchidb.settings")
+#os.environ['PYTHON_EGG_CACHE'] = '/home/kws/python_egg_cache'
+#
+## This application object is used by the development server
+## as well as any WSGI server configured to use this file.
+#from django.core.wsgi import get_wsgi_application
+#application = get_wsgi_application()
